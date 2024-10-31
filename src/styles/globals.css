@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #121212;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.icon-row {
+  display: flex;
+  justify-content: space-around; /* Distribute space evenly between icons */
+  align-items: center; /* Center icons vertically */
+  margin-bottom: 20px; /* Space between rows */
+}
+
+.icon {
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: transform 0.2s; /* Smooth transition for scaling */
+}
+
+.icon.selected {
+  transform: scale(1.2); /* Scale up the selected icon */
+  border: 2px solid blue; /* Optional: Add a border to the selected icon */
+}
