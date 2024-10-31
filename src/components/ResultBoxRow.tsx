@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ResultBox from './ResultBox';
 import { Box } from '@mui/material';
 

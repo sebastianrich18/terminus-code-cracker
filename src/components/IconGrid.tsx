@@ -6,10 +6,12 @@ interface IconGridProps {
   onResultsChange: (results: number[]) => void;
 }
 
-const IconGrid: React.FC<IconGridProps> = ({ onResultsChange }) => {
-  const [selectedIcons, setSelectedIcons] = useState<{ [key: number]: string }>({});
+type IconType = 'icon1' | 'icon2' | 'icon3' | 'icon4' | 'icon5' | 'icon6';
 
-  const iconToNumber = {
+const IconGrid: React.FC<IconGridProps> = ({ onResultsChange }) => {
+  const [selectedIcons, setSelectedIcons] = useState<{ [key: number]: IconType }>({});
+
+  const iconToNumber: { [key in IconType]: number } = {
     icon1: 0,
     icon2: 10,
     icon3: 11,
@@ -18,7 +20,7 @@ const IconGrid: React.FC<IconGridProps> = ({ onResultsChange }) => {
     icon6: 22,
   };
 
-  const handleIconClick = (row: number, type: string) => {
+  const handleIconClick = (row: number, type: IconType) => {
     setSelectedIcons((prev) => {
       const newSelectedIcons = { ...prev, [row]: type };
       return newSelectedIcons;
@@ -26,7 +28,7 @@ const IconGrid: React.FC<IconGridProps> = ({ onResultsChange }) => {
   };
 
   useEffect(() => {
-    const rows = [1, 2, 3];
+    const rows: number[] = [1, 2, 3];
     if (rows.every((row) => selectedIcons[row])) {
       const numbers = rows.map((row) => iconToNumber[selectedIcons[row]]);
       const results = calculateResults(numbers);
@@ -43,7 +45,7 @@ const IconGrid: React.FC<IconGridProps> = ({ onResultsChange }) => {
   };
 
   const renderRow = (row: number, label: string) => {
-    const icons = ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6'];
+    const icons: IconType[] = ['icon1', 'icon2', 'icon3', 'icon4', 'icon5', 'icon6'];
     return (
       <Box
         key={row}
