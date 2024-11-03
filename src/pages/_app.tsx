@@ -13,9 +13,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   useEffect(() => {
     const handleRouteChange = (url: string) => {
-      window.gtag('config', GA_TRACKING_ID, {
-        page_path: url,
-      });
+      if (typeof window.gtag === 'function') {
+        window.gtag('config', GA_TRACKING_ID, {
+          page_path: url,
+        });
+      }
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
@@ -62,13 +64,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_TRACKING_ID}', {
-            page_path: window.location.pathname,
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
             });
-            `,
+          `,
         }}
       />
       <Component {...pageProps} />
