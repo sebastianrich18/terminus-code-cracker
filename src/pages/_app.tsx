@@ -52,7 +52,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <meta name="twitter:site" content="@sebastianrich02" />
         <meta name="twitter:creator" content="@sebastianrich02" />
 
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" type="image/svg+xml" />
 
       </Head>
       <Script
